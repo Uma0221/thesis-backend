@@ -17,7 +17,7 @@ def getResult():
 
     input = np.array([[0, 0, 0.6, 0, False, 0]])
     result = model.predict(input)
-    return jsonify({'index': index,'predict': result})
+    return jsonify({'index': str(index),'predict': str(result)})
 
 @app.route('/predict', methods=['POST'])
 def postInput():
@@ -33,7 +33,7 @@ def postInput():
 
     input = np.array([[x1, x2, x3, x4, x5, x6]])
     result = model.predict(input)
-    return jsonify({'index': index,'predict': result})
+    return jsonify({'index': str(index),'predict': str(result)})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=False)

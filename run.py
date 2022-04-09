@@ -44,7 +44,7 @@ def postInput():
     # 取得前端傳過來的數值
     insertValuesArr = request.get_json()
     for insertValues in insertValuesArr:
-        if(len(insertValues)>0 and insertValues[0]>=0 and insertValues[0]<=9):
+        if(len(insertValues)>0 and int(insertValues['index'])>=0 and int(insertValues['index'])<=9):
             if(len(insertValues)!=7):
                 index = insertValues['index']
                 result = -1

@@ -13,13 +13,28 @@ def index():
 
 @app.route('/test', methods=['GET'])
 def getResult():
-    index = 10
     predictArr = []
 
-    inputs = np.array([[[0, 0, 0.6, 0, False, 0]],[[0, 0, 0.6, 0, False, 0]]])
-    for input in inputs:
-        result = model.predict(input)
-        predictArr.append({'index': str(index),'predict': str(result)})
+    insertValuesArr = np.array([[0, 0, 0, 0.6, 0, False, 0],[1, 0, 0, 0.6, 0, False, 0],[2],[]])
+    for insertValues in insertValuesArr:
+        if(len(insertValues)>0 and len(insertValues)!=7):
+            index = insertValues[0]
+            result = str(-1)
+
+            predictArr.append({'index': str(index),'predict': str(result)})
+        elif(len(insertValues)==7):
+            index = insertValues[0]
+            x1=insertValues[1]
+            x2=insertValues[2]
+            x3=insertValues[3]
+            x4=insertValues[4]
+            x5=insertValues[5]
+            x6=insertValues[6]
+
+            input = np.array([[x1, x2, x3, x4, x5, x6]])
+            result = model.predict(input)
+        
+            predictArr.append({'index': str(index),'predict': str(result)})
 
     return jsonify(predictArr)
 
@@ -29,17 +44,24 @@ def postInput():
     # 取得前端傳過來的數值
     insertValuesArr = request.get_json()
     for insertValues in insertValuesArr:
-        index = insertValues['index']
-        x1=insertValues['content_length']
-        x2=insertValues['photos_count']
-        x3=insertValues['star_gap']
-        x4=insertValues['like_count']
-        x5=insertValues['reply']
-        x6=insertValues['reviewer_rank']
+        if(len(insertValues)>0 and len(insertValues)!=7):
+            index = insertValues[0]
+            result = str(-1)
 
-        input = np.array([[x1, x2, x3, x4, x5, x6]])
-        result = model.predict(input)
-        predictArr.append({'index': str(index),'predict': str(result)})
+            predictArr.append({'index': str(index),'predict': str(result)})
+        elif(len(insertValues)==7):
+            index = insertValues[0]
+            x1=insertValues[1]
+            x2=insertValues[2]
+            x3=insertValues[3]
+            x4=insertValues[4]
+            x5=insertValues[5]
+            x6=insertValues[6]
+
+            input = np.array([[x1, x2, x3, x4, x5, x6]])
+            result = model.predict(input)
+        
+            predictArr.append({'index': str(index),'predict': str(result)})
 
     return jsonify(predictArr)
 

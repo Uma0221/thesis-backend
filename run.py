@@ -45,18 +45,18 @@ def postInput():
     insertValuesArr = request.get_json()
     for insertValues in insertValuesArr:
         if(len(insertValues)>0 and len(insertValues)!=7):
-            index = insertValues[0]
+            index = insertValues['index']
             result = str(-1)
 
             predictArr.append({'index': str(index),'predict': str(result)})
         elif(len(insertValues)==7):
-            index = insertValues[0]
-            x1=insertValues[1]
-            x2=insertValues[2]
-            x3=insertValues[3]
-            x4=insertValues[4]
-            x5=insertValues[5]
-            x6=insertValues[6]
+            index = insertValues['index']
+            x1=insertValues['content_length']
+            x2=insertValues['photos_count']
+            x3=insertValues['star_gap']
+            x4=insertValues['like_count']
+            x5=insertValues['reply']
+            x6=insertValues['reviewer_rank']
 
             input = np.array([[x1, x2, x3, x4, x5, x6]])
             result = model.predict(input)

@@ -15,9 +15,19 @@ def index():
 def getResult():
     predictArr = []
 
-    insertValuesArr = np.array([[0, 0, 0, 0.6, 0, False, 0],[-1,4,2],[1, 0, 0, 0.6, 0, False, 0],[],[2,3],[10],[-2],[3,5,4,0,2,3,9,1,8]])
+    insertValuesArr = np.array([
+        [0, 0, 0, 0.6, 0, False, 0],
+        [-1,4,2],
+        [1.4, 2, 4, 3, 1, True, 5],
+        [2, 0, 0, 0.6, 0, False, 0],
+        ["test"],
+        [3,3],
+        [10],
+        [-2],
+        [4,5,4,0,2,3,9,1,8]
+        ])
     for insertValues in insertValuesArr:
-        if(len(insertValues)>0 and insertValues[0]>=0 and insertValues[0]<=9):
+        if(len(insertValues)>0):
             if(len(insertValues)!=7):
                 index = insertValues[0]
                 result = -1
@@ -44,7 +54,7 @@ def postInput():
     # 取得前端傳過來的數值
     insertValuesArr = request.get_json()
     for insertValues in insertValuesArr:
-        if(len(insertValues)>0 and int(insertValues['index'])>=0 and int(insertValues['index'])<=9):
+        if(len(insertValues)>0):
             if(len(insertValues)!=7):
                 index = insertValues['index']
                 result = -1

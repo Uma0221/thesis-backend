@@ -1,6 +1,6 @@
 import pickle
 
-with open('./model/testModel.pickle', 'rb') as f:
+with open('./model/model.pickle', 'rb') as f:
     readModel = pickle.load(f)
 
 
